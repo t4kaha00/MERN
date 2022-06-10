@@ -6,6 +6,7 @@ const router = express.Router()
 const ipdata = JSON.parse(fs.readFileSync(`${__dirname}/../data/db.json`))
 
 router.post('/submit', (request, response) =>{
+    console.log(request.body);
     const sampleData = {
          "ip": request.body.ip,
          "ipcity": request.body.ipcity,
