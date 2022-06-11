@@ -10,9 +10,9 @@ router.post('/submit', (request, response) =>{
     const sampleData = {
          "ip": request.body.ip,
          "ipcity": request.body.ipcity,
-         "ipcountry": request.body.ipcountry
+         "ipcountry": request.body.ipcountry,
+         "date": request.body.ipdate
     }
-    
     const fileData = JSON.parse(fs.readFileSync(`${__dirname}/../data/db.json`))
     fileData.push(sampleData)
     fs.writeFileSync(`${__dirname}/../data/db.json`, JSON.stringify(fileData, null, 2), (data,err) => {

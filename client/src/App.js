@@ -20,6 +20,7 @@ class App extends Component {
       ipcity: res.data.city,
       ipcountry: res.data.country_name
     })
+    
   }
 
   get = async () => {
@@ -28,18 +29,18 @@ class App extends Component {
     this.setState({
       ipaddress: jsonData.data.IPv4
     })
-    // this.state.jsonIP.push(JSON.stringify(jsonData.data))
-    // console.log(this.state.jsonIP);
   }
 
   fetchIP = (event) => {
     event.preventDefault();
+    const currentdate = new Date(Date.now()).toJSON()
 
     const options = {
         ip: this.state.ipaddress,
         ipcity: this.state.ipcity,
-        ipcountry: this.state.ipcountry
-    }
+        ipcountry: this.state.ipcountry,
+        ipdate: currentdate
+      }
 
     axios({
       url: '/app/submit',
@@ -55,7 +56,6 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-          {/* <p>{this.state.jsonIP} asdadsss</p> */}
           <button onClick={this.get}>Get</button>
           <br/>
           <button onClick={this.fetchIP}>Send to DB</button>
