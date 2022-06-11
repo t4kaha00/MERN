@@ -9,57 +9,72 @@ class App extends Component {
        ipaddress: '',
        ipcity: '',
        ipcountry:'',
-       jsonIP: []
+       posts: []
+      //  jsonIP: []
     };
   }
 
-  async componentDidMount() {
-    const res = await axios.get('https://geolocation-db.com/json/')
-    this.setState({
-      ipaddress: res.data.IPv4,
-      ipcity: res.data.city,
-      ipcountry: res.data.country_name
-    })
-    
+  componentDidMount() {
+    this.get()  
   }
 
-  get = async () => {
-    const jsonData = await axios.get('https://geolocation-db.com/json/')
-    this.state.jsonIP.push(jsonData.data)
-    this.setState({
-      ipaddress: jsonData.data.IPv4
-    })
+  get = () => {
+    axios.get('/app')
+      .then((res) => {
+        const data = res.data;
+        this.setState({ 
+          posts:      data,
+          ipaddress:  data.IPv4,
+          ipcity:     data.city,
+          ipcountry:  data.country_code
+        })
+      })
+      .catch(() => {
+        console.log('Error retrieving data')
+      })
   }
 
-  fetchIP = (event) => {
+  displayData = (posts) => {
+    if (!posts.length) return null;
+
+    return posts.map((post, index) => (
+      <div key={index} className='data'>
+        <p>{post.ipaddress}</p>
+        <p>{post.ipcity}</p>
+        <p>{post.ipcountry}</p>
+      </div>
+    ));
+  }
+
+  fetchIP = async (event) => {
     event.preventDefault();
-    const currentdate = new Date(Date.now()).toJSON()
-
+    const ipdata = await axios.get('https://geolocation-db.com/json/')
+    console.log(ipdata.data)
     const options = {
-        ip: this.state.ipaddress,
-        ipcity: this.state.ipcity,
-        ipcountry: this.state.ipcountry,
-        ipdate: currentdate
-      }
+        clickedData: true,
+        ipaddress: ipdata.data.IPv4,
+        ipcity: ipdata.data.city,
+        ipcountry: ipdata.data.country_name
+    }
 
     axios({
       url: '/app/submit',
       method: 'POST',
       data: options
-    }).then(() => {
-      this.get();
-    }).catch(() => {
-      console.log('internal server error');
+    }).then(res => {
+      console.log("Data sent to server");
+      console.log(res);
+      this.get()
+    }).catch(err => {
+      console.log("internal server error");
     })
   }
   
   render() {
     return (
       <div className="App">
-          <button onClick={this.get}>Get</button>
-          <br/>
           <button onClick={this.fetchIP}>Send to DB</button>
-          <h1>{this.state.ipaddress}</h1>
+          <div className='table'>{this.displayData(this.state.posts)}</div>
       </div>
     )
   } 

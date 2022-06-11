@@ -1,7 +1,11 @@
 const mongoose = require('mongoose')
 
 const DataTemplate = new mongoose.Schema({
-    ip:{
+    clickedData:{
+        type:Boolean,
+        required:true
+    },
+    ipaddress:{
         type:String,
         required:true
     },

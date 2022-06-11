@@ -1,31 +1,34 @@
 const express = require('express')
-const fs = require('fs')
-// const DataTemplateCopy = require('../models/RecordModel')
+// const fs = require('fs')
+const DataTemplateCopy = require('../models/RecordModel')
 
 const router = express.Router()
-const ipdata = JSON.parse(fs.readFileSync(`${__dirname}/../data/db.json`))
 
 router.post('/submit', (request, response) =>{
     console.log(request.body);
-    const sampleData = {
-         "ip": request.body.ip,
-         "ipcity": request.body.ipcity,
-         "ipcountry": request.body.ipcountry,
-         "date": request.body.ipdate
+    const clickedData = new DataTemplateCopy({
+        clickedData:    request.body.clickedData,
+        ipaddress:      request.body.ipaddress,
+        ipcity:         request.body.ipcity,
+        ipcountry:      request.body.ipcountry
+   })
+   clickedData.save((error) => {
+    if (error) {
+        response.status(500).json({ msg: 'Sorry, internal server errors' });
+            return;
     }
-    const fileData = JSON.parse(fs.readFileSync(`${__dirname}/../data/db.json`))
-    fileData.push(sampleData)
-    fs.writeFileSync(`${__dirname}/../data/db.json`, JSON.stringify(fileData, null, 2), (data,err) => {
-        if (err) {
-            response.json(err)
-        }
-    })
-    response.json(fileData)
+    return response.json({
+        msg: 'Your data has been saved!!!!!!'
+    });
+   })
 })
 
-router.get('/', (req, res) => {
-    res.send(ipdata)
-    // DataTemplateCopy.find({}).then((data) => {response.json(data), console.log(data.length + " addresses found")}).catch(( error) => {console.log(error)})
+router.get('/', (request, response) => {
+    DataTemplateCopy.find({})
+                    .then((data) => {
+                        response.json(data),
+                        console.log(data.length + " addresses found")})
+                    .catch((error) => {console.log(error)})
 })
 
 module.exports = router
