@@ -7,15 +7,12 @@ const DataTemplate = new mongoose.Schema({
     },
     ipaddress:{
         type:String,
-        required:true
     },
     ipcountry:{
         type:String,
-        required:true
     },
     ipcity:{
         type:String,
-        required:true
     },
     date:{
         type:Date,

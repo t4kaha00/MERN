@@ -22,9 +22,10 @@ class App extends Component {
     axios.get('/app')
       .then((res) => {
         const data = res.data;
+        console.log(data);
         this.setState({ 
           posts:      data,
-          ipaddress:  data.IPv4,
+          ipaddress:  data.ipaddress,
           ipcity:     data.city,
           ipcountry:  data.country_code
         })
@@ -42,6 +43,7 @@ class App extends Component {
         <p>{post.ipaddress}</p>
         <p>{post.ipcity}</p>
         <p>{post.ipcountry}</p>
+        <button onClick={() => this.deleteData(post._id)}>Delete</button>
       </div>
     ));
   }
@@ -49,7 +51,6 @@ class App extends Component {
   fetchIP = async (event) => {
     event.preventDefault();
     const ipdata = await axios.get('https://geolocation-db.com/json/')
-    console.log(ipdata.data)
     const options = {
         clickedData: true,
         ipaddress: ipdata.data.IPv4,
@@ -69,6 +70,14 @@ class App extends Component {
       console.log("internal server error");
     })
   }
+
+  deleteData = async (id) => {
+      const response = await axios.delete(`/app/${id}`)
+      if(response.status === 200) {
+        console.log("Deleted " + id)
+        this.get()
+      }
+  }
   
   render() {
     return (
@@ -79,8 +88,8 @@ class App extends Component {
           </div>
           <label>
             <input type="checkbox"/>
-            <span class="menu">
-              <span class="hamburger"></span>
+            <span className="menu">
+              <span className="hamburger"></span>
             </span>
             <ul>
               <li> <a href="#">Home</a> </li>
