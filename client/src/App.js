@@ -73,8 +73,21 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-          <button onClick={this.fetchIP}>Send to DB</button>
-          <div className='table'>{this.displayData(this.state.posts)}</div>
+          <div>
+            <button onClick={this.fetchIP}>Send to DB</button>
+            <div className='table'>{this.displayData(this.state.posts)}</div>
+          </div>
+          <label>
+            <input type="checkbox"/>
+            <span class="menu">
+              <span class="hamburger"></span>
+            </span>
+            <ul>
+              <li> <a href="#">Home</a> </li>
+              <li> <a href="#">About</a> </li>
+              <li> <a href="#">Contact</a> </li>
+            </ul>
+          </label>
       </div>
     )
   } 
