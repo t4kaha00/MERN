@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { useEffect, useState } from "react";
+import './Sample.css';
 
 const Sample = () => {
     const [ipaddress, setIpaddress] = useState('');
