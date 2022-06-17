@@ -9,7 +9,7 @@ const Sample = () => {
     const [posts, setPosts] = useState([]);
 
     useEffect(() => {
-        get()
+      get()
     }, [])
 
     const get = () => {
@@ -54,9 +54,7 @@ const Sample = () => {
           method: 'POST',
           data: options
         }).then(res => {
-          console.log("Data sent to server");
-          console.log(res);
-          this.get()
+          get()
         }).catch(err => {
           console.log("internal server error");
         })
@@ -66,7 +64,7 @@ const Sample = () => {
         const response = await axios.delete(`/app/${id}`)
         if(response.status === 200) {
             console.log("Deleted " + id)
-            this.get()
+            get()
         }
     }
   
