@@ -1,4 +1,4 @@
-import React, { Component, useEffect } from 'react';
+import React, { Component } from 'react';
 import { BrowserRouter as Router,
          Route, 
          NavLink, 
@@ -47,8 +47,8 @@ function CardComponent() {
     cardelements[24].textContent = ""
 
     // Get the text content from desired element
-    let digitelement1 = document.getElementsByClassName('digit')[0].textContent
-    let digitelement2 = document.getElementsByClassName('digit')[1].textContent
+    // let digitelement1 = document.getElementsByClassName('digit')[0].textContent
+    // let digitelement2 = document.getElementsByClassName('digit')[1].textContent
 
     // Get the classname and add the face name for css changes
     const numberclass1 = document.getElementsByClassName('digit')[0].className

@@ -71,7 +71,9 @@ const Sample = () => {
   return (
     <div>
         <div>
+            <br />
             <button onClick={fetchIP}>Send to DB</button>
+            <br />
             <div className='table'>{displayData(posts)}</div>
         </div>
     </div>
