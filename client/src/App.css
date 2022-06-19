@@ -1,14 +1,28 @@
 .App {
-    text-align: center;
+    text-align: -webkit-center;
 }
 
-.cards {
+.deck {
     text-align: -webkit-center;
-    /* display: block; */
+    position: relative;
+    width: 16em;
+    height: calc(1.4*16em);
+    /* transform: rotate(-30deg) skew(25deg) scale(0.8); */
+    /* transition: 0.5s  */
 }
+
+/* .deck:hover :first-child {
+    transform: translateX(160px);
+    background-color: aqua;
+}
+.deck:hover :last-child {
+    transform: translateX(-160px);
+    background-color: bisque;
+} */
 
 .card {
-    margin: 2em;
+    margin-top: 2em;
+    margin-bottom: 2em;
     width: 16em;
     height: calc(1.4*16em);
     display: grid;
@@ -17,6 +31,13 @@
     grid-template-columns: 15% auto auto auto 15%;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     border-radius: 3%;
+    /* transform: rotate(-30deg) skew(25deg) scale(0.8); */
+    /* transition: 0.5s  */
+}
+
+.card:hover {
+    transform: rotate(-30deg) skew(25deg) scale(0.8);
+    transition: 0.5s;
 }
 
 .blank {

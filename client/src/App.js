@@ -787,9 +787,10 @@ function CardComponent() {
     }
   }
   return (
-    <div className='cards'>
+    <div className='deck'>
+      {/* <div className='' card-number="none"></div> */}
       <div className='card' card-number="one">
-          <div className='digit'></div>
+          <div className='digit spade'>A</div>
           <div className='blank'></div>
           <div className='blank'></div>
           <div className='blank'></div>
@@ -801,6 +802,7 @@ function CardComponent() {
           <div className='blank'></div>
           <div className='blank'></div>
           <div className='blank'></div>
+          <div className='spade'></div>
           <div className='blank'></div>
           <div className='blank'></div>
           <div className='blank'></div>
@@ -812,9 +814,9 @@ function CardComponent() {
           <div className='blank'></div>
           <div className='blank'></div>
           <div className='blank'></div>
-          <div className='blank'></div>
-          <div id='digit-end'className='digit'></div>
+          <div id='digit-end'className='digit spade'>A</div>
       </div>
+      {/* <div className='' card-number=""></div> */}
       <button onClick={() => {displayRandomCard()}}>Generate Random Card</button>
     </div>
   )
