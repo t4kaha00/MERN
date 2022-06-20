@@ -39,7 +39,7 @@ const Sample = () => {
         ));
     }
 
-    const fetchIP = async (event) => {
+    const sendIP = async (event) => {
         event.preventDefault();
         const ipdata = await axios.get('https://geolocation-db.com/json/')
         const options = {
@@ -72,7 +72,7 @@ const Sample = () => {
     <div>
         <div>
             <br />
-            <button onClick={fetchIP}>Send to DB</button>
+            <button onClick={sendIP}>Send to DB</button>
             <br />
             <div className='table'>{displayData(posts)}</div>
         </div>
