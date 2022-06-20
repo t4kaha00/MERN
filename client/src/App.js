@@ -14,6 +14,7 @@ class App extends Component {
         <div>
           <Router>
             <NavLink to="/sample">Sample</NavLink>
+            <br />
             <NavLink to="/">Home</NavLink>
             <Routes>
               <Route path='/sample' element={<Sample/>} />
