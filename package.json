@@ -16,7 +16,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "cd client && react-scripts build",
-    "install": "npm ci install && cd client && npm ci install",
+    "install": "npm ci && cd client && npm ci",
     "heroku-postbuild": "npm run install && npm run build",
     "start": "nodemon server.js",
     "client": "cd client && npm start",
