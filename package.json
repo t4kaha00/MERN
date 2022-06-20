@@ -10,16 +10,14 @@
     "dotenv": "^16.0.1",
     "express": "^4.18.1",
     "mongoose": "^6.3.6",
-    "nodemon": "^2.0.16",
-    "react-scripts": "^5.0.1"
+    "nodemon": "^2.0.16"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js",
     "build": "cd client && react-scripts build",
     "install-client": "npm install && cd client && npm install",
     "heroku-postbuild": "npm run install-client && npm run build",
-    "start": "nodemon server.js",
-    "client": "cd client && npm start",
     "dev": "concurrently -n 'server,client' \"npm run start\" \"npm run client\""
   },
   "author": "Harjit Karmacharya",

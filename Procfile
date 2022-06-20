@@ -1,2 +1,2 @@
-api: npm run start
-web: npm run client
+api: nodemon server.js
+# web: cd client && npm run start
