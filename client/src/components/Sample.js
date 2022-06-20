@@ -3,9 +3,6 @@ import { useEffect, useState } from "react";
 import './Sample.css';
 
 const Sample = () => {
-    const [ipaddress, setIpaddress] = useState('');
-    const [ipcity, setIpcity] = useState('');
-    const [ipcountry, setIpcountry] = useState('');
     const [posts, setPosts] = useState([]);
 
     useEffect(() => {
@@ -16,9 +13,6 @@ const Sample = () => {
         axios.get('/app')
           .then((res) => {
             const data = res.data;
-            setIpaddress(data.ipaddress)
-            setIpcity(data.city)
-            setIpcountry(data.country_code)
             setPosts(data)
           })
           .catch(() => {
@@ -39,14 +33,15 @@ const Sample = () => {
         ));
     }
 
-    const sendIP = async (event) => {
+    const fetchIP = async (event) => {
         event.preventDefault();
         const ipdata = await axios.get('https://geolocation-db.com/json/')
         const options = {
             clickedData: true,
             ipaddress: ipdata.data.IPv4,
             ipcity: ipdata.data.city,
-            ipcountry: ipdata.data.country_name
+            ipcountry: ipdata.data.country_name,
+            ipdata: ipdata.data
         }
 
         axios({
@@ -72,7 +67,7 @@ const Sample = () => {
     <div>
         <div>
             <br />
-            <button onClick={sendIP}>Send to DB</button>
+            <button onClick={fetchIP}>Send to DB</button>
             <br />
             <div className='table'>{displayData(posts)}</div>
         </div>

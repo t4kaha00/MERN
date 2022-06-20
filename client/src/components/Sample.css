@@ -2,7 +2,7 @@ button {
   padding: 1em;
   background-color: #1197cc;
   box-shadow: #094c66 4px 4px 0px;
-  border-radius: 8px;
+  border-radius: 1rem;
   transition: transform 200ms, box-shadow 200ms;
 }
 button:active {
@@ -11,16 +11,17 @@ button:active {
 }
 .table {
   display: flex;
-  flex-direction: column;
   flex-flow: column wrap;
-  gap: 1px;
+  gap: 1rem;
+  width: 60%;
   margin-top: 5px;
-  background-color: #abd1c6;
+  /* background-color: #abd1c6; */
 }
 .data {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 4rem;
   border: 1px solid black;
+  border-radius: 1rem;
 }
 
 

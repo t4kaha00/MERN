@@ -14,6 +14,9 @@ const DataTemplate = new mongoose.Schema({
     ipcity:{
         type:String,
     },
+    ipdata:{
+        type:Object
+    },
     date:{
         type:Date,
         default:Date.now
