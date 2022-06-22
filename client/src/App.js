@@ -13,7 +13,7 @@ class App extends Component {
       <div className="App">
         <div>
           <Router>
-            <NavLink to="/sample">Sample</NavLink>
+            {/* <NavLink to="/sample">Sample</NavLink> */}
             <br />
             <NavLink to="/">Home</NavLink>
             <Routes>
@@ -789,7 +789,6 @@ function CardComponent() {
   }
   return (
     <div className='deck'>
-      {/* <div className='' card-number="none"></div> */}
       <div className='card' card-number="one">
           <div className='digit spade'>A</div>
           <div className='blank'></div>
@@ -817,7 +816,6 @@ function CardComponent() {
           <div className='blank'></div>
           <div id='digit-end'className='digit spade'>A</div>
       </div>
-      {/* <div className='' card-number=""></div> */}
       <button onClick={() => {displayRandomCard()}}>Generate Random Card</button>
     </div>
   )

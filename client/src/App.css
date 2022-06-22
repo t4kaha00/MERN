@@ -11,15 +11,6 @@
     /* transition: 0.5s  */
 }
 
-/* .deck:hover :first-child {
-    transform: translateX(160px);
-    background-color: aqua;
-}
-.deck:hover :last-child {
-    transform: translateX(-160px);
-    background-color: bisque;
-} */
-
 .card {
     margin-top: 2em;
     margin-bottom: 2em;
