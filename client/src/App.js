@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {useEffect, useState} from 'react';
 import { BrowserRouter as Router,
          Route, 
          NavLink, 
@@ -11,7 +12,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <div>
+        <div style={{width: '100vw'}}>
           <Router>
             {/* <NavLink to="/sample">Sample</NavLink> */}
             <br />
@@ -19,6 +20,7 @@ class App extends Component {
             <Routes>
               <Route path='/sample' element={<Sample/>} />
               <Route path='/' element={<CardComponent/>} />
+              <Route path='/fib' element={<FibonacciComponent/>} />
             </Routes>
           </Router>
         </div>
@@ -31,6 +33,27 @@ function CardComponent() {
   const numbers = ["one","two","three","four","five","six","seven","eight","nine","ten","J","Q","K"]
   const faces = ["Spade","Heart","Club","Diamond"]
 
+  const [coords, setCoords] = useState({x: 0});
+  const [side, setSide] = useState('');
+  
+  const handleMouseOut = event => {
+    document.getElementsByClassName("card")[0].setAttribute('data-side', 'none')
+  }
+
+  const handleMouseMove = event => {
+    // innerwidth gives the width of viewport and half in the middle point
+    setCoords({
+      x: event.clientX - window.innerWidth/2
+    });
+
+    // For CSS purposes
+    if (100 > coords.x > 0) { setSide('rightHalf')}
+    if (coords.x > 100) { setSide('right')}
+    if (coords.x < 0) { setSide('leftHalf')}
+    if (coords.x < -100) { setSide('left')}
+    document.getElementsByClassName("card")[0].setAttribute('data-side', side)
+  };
+  
   const displayRandomCard = () => {
     // Generate random number and face from given arrays
     const randomnumber = numbers[Math.floor(Math.random()*numbers.length)]
@@ -789,6 +812,7 @@ function CardComponent() {
   }
   return (
     <div className='deck'>
+      <div onMouseMove={handleMouseMove} onMouseLeave={handleMouseOut} style={{width: '50%'}}>
       <div className='card' card-number="one">
           <div className='digit spade'>A</div>
           <div className='blank'></div>
@@ -816,8 +840,42 @@ function CardComponent() {
           <div className='blank'></div>
           <div id='digit-end'className='digit spade'>A</div>
       </div>
-      <button onClick={() => {displayRandomCard()}}>Generate Random Card</button>
+        <button onClick={() => {displayRandomCard()}}>Generate Random Card</button>
+      </div>
+      <div>
+        <FibonacciComponent/>
+      </div>
     </div>
+  )
+}
+
+const FibonacciComponent = () => {
+  const [fibinput, setFibinput] = React.useState('')
+  const [result, setResult] = React.useState('')
+
+  const handlechange = (event) => {
+    if (!event.target.value) return setResult('Input a number!!')
+    const fibonacciNo = fib(event.target.value)
+    if (fibonacciNo == 0) return setResult('Too Large')
+    setResult(fibonacciNo)
+  }
+
+  const fib = (n, memo = {}) => {
+    if (n > 1476) return 0
+    if (n in memo) return memo[n]
+    if (n <= 2) return 1
+
+    memo[n] = fib(n-1, memo) + fib(n-2, memo)
+    return memo[n]
+  }
+
+  return (
+    <form>
+      <br/>
+      <label>Calculate Fibonacci: </label>
+      <input onChange={handlechange} type="number"/>
+      <p>{result}</p>
+    </form>
   )
 }
 

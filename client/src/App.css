@@ -3,9 +3,14 @@
 }
 
 .deck {
-    text-align: -webkit-center;
-    position: relative;
-    width: 16em;
+    display: flex;
+    flex-flow: column;
+    gap: 2rem;
+    justify-content: center;
+    align-items: center;
+    margin-top: 15%;
+    /* position: relative; */
+    width: 100%;
     height: calc(1.4*16em);
     /* transform: rotate(-30deg) skew(25deg) scale(0.8); */
     /* transition: 0.5s  */
@@ -22,13 +27,28 @@
     grid-template-columns: 15% auto auto auto 15%;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     border-radius: 3%;
-    /* transform: rotate(-30deg) skew(25deg) scale(0.8); */
-    /* transition: 0.5s  */
+    background-color: white;
+    transition: 0.5s;
+}
+
+.card[data-side = "left"] {
+    transform: rotate(30deg) skew(-25deg) scale(0.8);
+    transition: 0.3s;
+}
+.card[data-side = "leftHalf"] {
+    transform: rotate(15deg) skew(-12.5deg) scale(0.8);
+    transition: 0.3s;
+}
+.card[data-side = "right"] {
+    transform: rotate(-30deg) skew(25deg) scale(0.8);
+    transition: 0.3s;
+}
+.card[data-side = "rightHalf"] {
+    transform: rotate(-15deg) skew(12.5deg) scale(0.8);
+    transition: 0.3s;
 }
 
 .card:hover {
-    transform: rotate(-30deg) skew(25deg) scale(0.8);
-    transition: 0.5s;
 }
 
 .blank {
