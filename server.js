@@ -13,7 +13,7 @@ mongoose.connect(process.env.DATABASE_ACCESS, () => console.log("Database Connec
 
 app.use(express.json())
 app.use(cors())
-app.use(express.static(path.join(__dirname, "/client/build")));
+app.use(express.static(path.join(__dirname, "./client/build")));
 
 app.use('/app', routes)
 const server = app.listen(PORT, () => {
