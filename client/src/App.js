@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {useEffect, useState} from 'react';
+import { useState } from 'react';
 import { BrowserRouter as Router,
          Route, 
          NavLink, 
@@ -850,13 +850,12 @@ function CardComponent() {
 }
 
 const FibonacciComponent = () => {
-  const [fibinput, setFibinput] = React.useState('')
   const [result, setResult] = React.useState('')
 
   const handlechange = (event) => {
     if (!event.target.value) return setResult('Input a number!!')
     const fibonacciNo = fib(event.target.value)
-    if (fibonacciNo == 0) return setResult('Too Large')
+    if (fibonacciNo === 0) return setResult('Too Large')
     setResult(fibonacciNo)
   }
 
