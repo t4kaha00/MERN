@@ -1,2 +1,2 @@
-api: node server.js
-# web: npm run start-client
+# api: npm run start-client
+web: node server.js
