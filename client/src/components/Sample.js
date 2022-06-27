@@ -1,6 +1,7 @@
-import axios from 'axios';
 import { useEffect, useState } from "react";
 import './Sample.css';
+import axios from 'axios';
+import { axiosInstance } from '../config';
 
 const Sample = () => {
     const [posts, setPosts] = useState([]);
@@ -10,7 +11,7 @@ const Sample = () => {
     }, [])
 
     const get = () => {
-        axios.get('/app')
+        axiosInstance.get('/app')
           .then((res) => {
             const data = res.data;
             setPosts(data)
@@ -44,7 +45,7 @@ const Sample = () => {
             ipdata: ipdata.data
         }
 
-        axios({
+        axiosInstance({
           url: '/app/submit',
           method: 'POST',
           data: options
@@ -56,7 +57,7 @@ const Sample = () => {
     }
 
     const deleteData = async (id) => {
-        const response = await axios.delete(`/app/${id}`)
+        const response = await axiosInstance.delete(`/app/${id}`)
         if(response.status === 200) {
             console.log("Deleted " + id)
             get()

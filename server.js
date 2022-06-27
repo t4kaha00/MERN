@@ -13,11 +13,7 @@ mongoose.connect(process.env.DATABASE_ACCESS, () => console.log("Database Connec
 
 app.use(express.json())
 app.use(cors())
-
-// In production mode, use build folder for staic web for faster loading
-if (process.env.NODE_ENV === 'production') {
-    app.use(express.static(path.join(__dirname + "/../build")));
-}
+app.use(express.static(path.join(__dirname, "/client/build")));
 
 app.use('/app', routes)
 const server = app.listen(PORT, () => {
