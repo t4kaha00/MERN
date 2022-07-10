@@ -20,7 +20,8 @@ class App extends Component {
             <Routes>
               <Route path='/sample' element={<Sample/>} />
               <Route path='/' element={<CardComponent/>} />
-              <Route path='/fib' element={<FibonacciComponent/>} />
+              {/* <Route path='/fib' element={<FibonacciComponent/>} /> */}
+              {/* <Route path='/log' element={<LoginComponent/>} /> */}
             </Routes>
           </Router>
         </div>
@@ -844,6 +845,7 @@ function CardComponent() {
       </div>
       <div>
         <FibonacciComponent/>
+        <LoginComponent/>
       </div>
     </div>
   )
@@ -875,6 +877,31 @@ const FibonacciComponent = () => {
       <input onChange={handlechange} type="number"/>
       <p>{result}</p>
     </form>
+  )
+}
+
+function LoginComponent() {
+  const [login, setLogin] = useState(false);
+  const [password, setPassword] = useState();
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    {password === "" ? alert("Please provide password") 
+                      : password == "something" ? setLogin(true)
+                      : alert("incorrect password")}
+    setPassword("")
+  }
+  return (
+    <div>
+      <form onSubmit={handleSubmit}>
+        <input value={password} type="text" name="pass" id="pass" onChange={(e) => setPassword(e.target.value)}/>
+        <input type="submit" value="Login" />
+      </form>
+
+      {login ? <Sample/>
+            : false}
+
+    </div>
   )
 }
 

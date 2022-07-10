@@ -11,7 +11,7 @@ const Sample = () => {
     }, [])
 
     const get = () => {
-        axios.get('/app')
+        axios.get('https://mern-stack-trial.herokuapp.com/app')
           .then((res) => {
             const data = res.data;
             setPosts(data)
@@ -69,9 +69,9 @@ const Sample = () => {
   return (
     <div>
         <div>
-            <br />
+            {/* <br />
             <button onClick={fetchIP}>Send to DB</button>
-            <br />
+            <br /> */}
             <div className='table'>{displayData(posts)}</div>
         </div>
     </div>
