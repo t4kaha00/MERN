@@ -5,15 +5,6 @@ const DataTemplate = new mongoose.Schema({
         type:Boolean,
         required:true
     },
-    ipaddress:{
-        type:String,
-    },
-    ipcountry:{
-        type:String,
-    },
-    ipcity:{
-        type:String,
-    },
     ipdata:{
         type:Object
     },

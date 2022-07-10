@@ -23,13 +23,17 @@ const Sample = () => {
 
     const displayData = (posts) => {
         if (!posts.length) return null;
-
         return posts.map((post, index) => (
-          <div key={index} className='data'>
-            <p>{post.ipaddress}</p>
-            <p>{post.ipcity}</p>
-            <p>{post.ipcountry}</p>
-            <button onClick={() => deleteData(post._id)}>Delete</button>
+          <div key={index}>
+            {!post.ipdata 
+            ? console.log("ipdata doesnot exist")
+            : <div className="data">
+                <p>{post.ipdata.IPv4}</p>
+                <p>{post.ipdata.country_name}</p>
+                <p>{post.ipdata.city}</p>
+                <button onClick={() => deleteData(post._id)}>Delete</button>
+              </div>
+            }
           </div>
         ));
     }
@@ -39,9 +43,6 @@ const Sample = () => {
         const ipdata = await axios.get('https://geolocation-db.com/json/')
         const options = {
             clickedData: true,
-            ipaddress: ipdata.data.IPv4,
-            ipcity: ipdata.data.city,
-            ipcountry: ipdata.data.country_name,
             ipdata: ipdata.data
         }
 
@@ -50,6 +51,7 @@ const Sample = () => {
           method: 'POST',
           data: options
         }).then(res => {
+          console.log("added")
           get()
         }).catch(err => {
           console.log("internal server error");

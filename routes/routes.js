@@ -7,7 +7,7 @@ const router = express.Router()
 router.post('/submit', (request, response) =>{
     const clickedData = new DataTemplateCopy({
         clickedData:    request.body.clickedData,
-        ipdata:         request.body.data
+        ipdata:         request.body.ipdata
     })
    clickedData.save((error) => {
     if (error) {
