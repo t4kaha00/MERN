@@ -14,14 +14,16 @@ class App extends Component {
       <div className="App">
         <div style={{width: '100vw'}}>
           <Router>
-            {/* <NavLink to="/sample">Sample</NavLink> */}
-            <br />
-            <NavLink to="/">Home</NavLink>
+            <div className='menu'>
+              <NavLink to="/">Home</NavLink>
+              <NavLink to="/fib">Fibonacci Generator</NavLink>
+              <NavLink to="/log">Login</NavLink>
+            </div>
             <Routes>
               <Route path='/sample' element={<Sample/>} />
               <Route path='/' element={<CardComponent/>} />
-              {/* <Route path='/fib' element={<FibonacciComponent/>} /> */}
-              {/* <Route path='/log' element={<LoginComponent/>} /> */}
+              <Route path='/fib' element={<FibonacciComponent/>} />
+              <Route path='/log' element={<LoginComponent/>} />
             </Routes>
           </Router>
         </div>
@@ -843,10 +845,10 @@ function CardComponent() {
       </div>
         <button onClick={() => {displayRandomCard()}}>Generate Random Card</button>
       </div>
-      <div>
+      {/* <div>
         <FibonacciComponent/>
         <LoginComponent/>
-      </div>
+      </div> */}
     </div>
   )
 }

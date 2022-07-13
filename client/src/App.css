@@ -2,6 +2,17 @@
     text-align: -webkit-center;
 }
 
+.menu {
+    display: flex;
+    gap: 2rem;
+    place-content: center;
+    margin-bottom: 3rem;
+}
+
+.menu a {
+    color: #444440;
+}
+
 .deck {
     display: flex;
     flex-flow: column;
