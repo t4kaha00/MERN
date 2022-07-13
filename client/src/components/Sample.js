@@ -13,8 +13,9 @@ const Sample = () => {
     const get = () => {
         axios.get('https://mern-stack-trial.herokuapp.com/app')
           .then((res) => {
-            const data = res.data;
-            setPosts(data)
+            // Filter response data where ipdata is included
+            const ipdata = res.data.filter((post) => post.ipdata);
+            setPosts(ipdata)
           })
           .catch(() => {
             console.log('Error retrieving data')
@@ -22,9 +23,9 @@ const Sample = () => {
     }
 
     const displayData = (posts) => {
-      const sortedposts = posts.filter((post) => post.ipdata)
-      if (!sortedposts.length) return null;
-      return sortedposts.map((post, index) => (
+      // If posts array length is 0 then returns null
+      if (!posts.length) return null;
+      return posts.map((post, index) => (
         <div key={index}>
           {!post.ipdata 
           ? console.log("ipdata doesnot exist")
@@ -39,7 +40,7 @@ const Sample = () => {
       ));
     }
 
-    const fetchIP = async (event) => {
+    const sendIP = async (event) => {
         event.preventDefault();
         const ipdata = await axios.get('https://geolocation-db.com/json/')
         const options = {
@@ -71,7 +72,7 @@ const Sample = () => {
     <div>
         <div>
             {/* <br />
-            <button onClick={fetchIP}>Send to DB</button>
+            <button onClick={sendIP}>Send to DB</button>
             <br /> */}
             <div className='table'>{displayData(posts)}</div>
         </div>
