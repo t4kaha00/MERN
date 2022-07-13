@@ -22,20 +22,21 @@ const Sample = () => {
     }
 
     const displayData = (posts) => {
-        if (!posts.length) return null;
-        return posts.map((post, index) => (
-          <div key={index}>
-            {!post.ipdata 
-            ? console.log("ipdata doesnot exist")
-            : <div className="data">
-                <p>{post.ipdata.IPv4}</p>
-                <p>{post.ipdata.country_name}</p>
-                <p>{post.ipdata.city}</p>
-                <button onClick={() => deleteData(post._id)}>Delete</button>
-              </div>
-            }
-          </div>
-        ));
+      const sortedposts = posts.filter((post) => post.ipdata)
+      if (!sortedposts.length) return null;
+      return sortedposts.map((post, index) => (
+        <div key={index}>
+          {!post.ipdata 
+          ? console.log("ipdata doesnot exist")
+          : <div className="data">
+              <p>{post.ipdata.IPv4}</p>
+              <p>{post.ipdata.country_name}</p>
+              <p>{post.ipdata.city}</p>
+              <button onClick={() => deleteData(post._id)}>Delete</button>
+            </div>
+          }
+        </div>
+      ));
     }
 
     const fetchIP = async (event) => {

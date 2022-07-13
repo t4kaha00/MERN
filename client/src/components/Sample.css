@@ -19,12 +19,11 @@ button:active {
 }
 .data {
   display: grid;
+  gap: 1rem;
   grid-template-columns: 1fr 1fr 1fr 4rem;
   border: 1px solid black;
   border-radius: 1rem;
 }
-
-
 
 
 label .menu {
